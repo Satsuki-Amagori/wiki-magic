@@ -1,101 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>魔法リスト</title>
-  <script>
-    // SHA-256でパスワードをハッシュ化する関数
-    async function sha256(text) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(text);
-      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-      return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
-    }
-
-    // ログイン処理
-    async function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      if (!username || !password) {
-        alert("ユーザー名とパスワードを入力してください");
-        return;
-      }
-
-      try {
-        const response = await fetch("users.json");
-        const userData = await response.json();
-
-        if (!userData.users[username]) {
-          alert("ユーザー名が存在しません");
-          return;
-        }
-
-        const hashedPassword = await sha256(password);
-        if (hashedPassword !== userData.users[username]) {
-          alert("パスワードが間違っています");
-          return;
-        }
-
-        // LocalStorageに保存してログイン状態を保持
-        localStorage.setItem("username", username);
-        loadSpells();
-      } catch (error) {
-        alert("データを読み込めませんでした");
-      }
-    }
-
-    // 魔法リストを表示
-    async function loadSpells() {
-      const username = localStorage.getItem("username");
-      if (!username) return;
-
-      try {
-        const response = await fetch("spells.json");
-        const spells = await response.json();
-
-        // ユーザーが使用可能な魔法をフィルタリング
-        const availableSpells = spells.filter(spell => spell.users.includes(username));
-
-        const spellList = document.getElementById("spell-list");
-        spellList.innerHTML = availableSpells.length > 0
-          ? availableSpells.map(spell => `<li>${spell.name}: ${spell.effect} (${spell.cost})</li>`).join("")
-          : "<li>使用できる魔法がありません</li>";
-
-        document.getElementById("login-form").style.display = "none";
-        document.getElementById("spell-section").style.display = "block";
-      } catch (error) {
-        alert("データを読み込めませんでした");
-      }
-    }
-
-    // ログアウト処理
-    function logout() {
-      localStorage.removeItem("username");
-      location.reload();
-    }
-
-    // ページ読み込み時に自動ログインチェック
-    window.onload = function () {
-      if (localStorage.getItem("username")) {
-        loadSpells();
-      }
-    };
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログインページ</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <h1>魔法リスト</h1>
-
-  <div id="login-form">
+    <h2>ログイン</h2>
     <input type="text" id="username" placeholder="ユーザー名">
     <input type="password" id="password" placeholder="パスワード">
     <button onclick="login()">ログイン</button>
-  </div>
 
-  <div id="spell-section" style="display: none;">
-    <h2>使用可能な魔法</h2>
-    <ul id="spell-list"></ul>
-    <button onclick="logout()">ログアウト</button>
-  </div>
+    <!-- JavaScript ファイルを読み込む -->
+    <script src="login.js" defer></script>
 </body>
 </html>
