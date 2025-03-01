@@ -1,0 +1,20 @@
+[
+  {
+    "name": "ファイアボール",
+    "effect": "範囲内の敵に火炎ダメージ",
+    "cost": "MP 10",
+    "users": ["alice", "bob"]
+  },
+  {
+    "name": "ヒール",
+    "effect": "味方1人のHPを回復",
+    "cost": "MP 5",
+    "users": ["alice"]
+  },
+  {
+    "name": "サンダーストーム",
+    "effect": "範囲内の敵に雷ダメージ",
+    "cost": "MP 15",
+    "users": ["bob"]
+  }
+]
