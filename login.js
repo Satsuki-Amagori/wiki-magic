@@ -1,19 +1,46 @@
+document.getElementById("loginButton").addEventListener("click", login);
+
+async function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    try {
+        console.log("Fetching users.json...");
+        const response = await fetch("users.json");
+        if (!response.ok) throw new Error(`HTTPエラー: ${response.status}`);
+
+        const usersData = await response.json();
+        console.log("取得したユーザーデータ:", usersData);
+
+        // ユーザー認証
+        const user = usersData.users.find(user => user.username === username && user.password === password);
+        if (!user) {
+            alert("ユーザー名またはパスワードが間違っています");
+            return;
+        }
+
+        console.log(`ログイン成功: ${username}`);
+        displayMagic(username);
+
+    } catch (error) {
+        console.error("エラー:", error);
+        alert("ログイン処理中にエラーが発生しました");
+    }
+}
+
 async function displayMagic(username) {
     try {
         console.log("Fetching magic.json...");
         const response = await fetch("magic.json");
-        
-        if (!response.ok) {
-            throw new Error(`HTTPエラー: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTPエラー: ${response.status}`);
 
         const magicData = await response.json();
         console.log("取得した魔法データ:", magicData);
 
         const magicList = document.getElementById("magic-list");
-        magicList.innerHTML = ""; // 🔴 これがないと前のデータが消えない！
+        magicList.innerHTML = ""; // 既存のリストをクリア
 
-        let hasMagic = false; // 🔵 表示すべき魔法があるか判定
+        let hasMagic = false;
 
         magicData.magic.forEach(magic => {
             if (magic.users.includes(username)) {
@@ -33,17 +60,5 @@ async function displayMagic(username) {
     } catch (error) {
         console.error("エラー:", error);
         alert("魔法の取得中にエラーが発生しました");
-    }
-}
-function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value; 
-
-    // 一旦、固定のユーザー名・パスワードでチェック（本番では適切な認証を実装する）
-    if (username === "testuser" && password === "password123") {
-        console.log("ログイン成功");
-        displayMagic(username); // ✅ ログイン成功後に魔法を表示
-    } else {
-        alert("ユーザー名またはパスワードが違います");
     }
 }
