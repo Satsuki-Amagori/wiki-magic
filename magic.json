@@ -1,20 +1,17 @@
-[
-  {
-    "name": "ファイアボール",
-    "effect": "範囲内の敵に火炎ダメージ",
-    "cost": "MP 10",
-    "users": ["alice", "bob"]
-  },
-  {
-    "name": "ヒール",
-    "effect": "味方1人のHPを回復",
-    "cost": "MP 5",
-    "users": ["alice"]
-  },
-  {
-    "name": "サンダーストーム",
-    "effect": "範囲内の敵に雷ダメージ",
-    "cost": "MP 15",
-    "users": ["bob"]
-  }
-]
+{
+  "magic": [
+    {
+      "name": "ファイアボール",
+      "effect": "爆発的な炎で敵を焼く",
+      "cost": "MP 10",
+      "users": ["alice", "bob"]
+    },
+    {
+      "name": "ヒール",
+      "effect": "味方のHPを回復",
+      "cost": "MP 5",
+      "users": ["charlie", "bob"]
+    }
+  ]
+}
+
