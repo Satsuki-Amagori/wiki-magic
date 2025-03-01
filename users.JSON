@@ -1,0 +1,6 @@
+{
+  "users": {
+    "alice": "mypassword",
+    "bob": "secret123"
+  }
+}
