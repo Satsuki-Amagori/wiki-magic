@@ -35,3 +35,15 @@ async function displayMagic(username) {
         alert("魔法の取得中にエラーが発生しました");
     }
 }
+function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value; 
+
+    // 一旦、固定のユーザー名・パスワードでチェック（本番では適切な認証を実装する）
+    if (username === "testuser" && password === "password123") {
+        console.log("ログイン成功");
+        displayMagic(username); // ✅ ログイン成功後に魔法を表示
+    } else {
+        alert("ユーザー名またはパスワードが違います");
+    }
+}
