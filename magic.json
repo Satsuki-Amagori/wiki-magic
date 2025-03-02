@@ -1,17 +1,16 @@
 {
-  "magic": [
-    {
-      "name": "ファイアボール",
-      "effect": "爆発的な炎で敵を焼く",
-      "cost": "MP 10",
-      "users": ["alice", "bob"]
+    "fireball": {
+        "name": "ファイアボール",
+        "description": "爆発的な炎で敵を焼く",
+        "cost": "MP 10",
+        "password": "fire123",
+        "details": "ファイアボールは半径3mの範囲に40ダメージを与える。"
     },
-    {
-      "name": "ヒール",
-      "effect": "味方のHPを回復",
-      "cost": "MP 5",
-      "users": ["charlie", "bob"]
+    "iceblast": {
+        "name": "アイスブラスト",
+        "description": "冷気の爆発で敵を凍らせる",
+        "cost": "MP 15",
+        "password": "ice456",
+        "details": "アイスブラストは敵の動きを2ターン遅くする。"
     }
-  ]
 }
-
