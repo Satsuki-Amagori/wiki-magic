@@ -2,6 +2,6 @@
     "magic": [
         { "name": "ファイアボール", "description": "爆発的な炎で敵を焼く", "password": "fire123" },
         { "name": "アイススピア", "description": "鋭い氷の槍で貫く", "password": "ice456" },
-        { "name": "magic", "description": "試行用", "password": "trymagic" },
+        { "name": "magic", "description": "試行用", "password": "trymagic" }
     ]
 }
