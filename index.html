@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインページ</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>魔法検索</title>
+    <script src="login.js" defer></script>
 </head>
 <body>
-    <h2>ログイン</h2>
-    <input type="text" id="username" placeholder="ユーザー名">
-    <input type="password" id="password" placeholder="パスワード">
-    <button onclick="login()">ログイン</button>
-
-    <h2>使用可能な魔法</h2>
-    <div id="magic-list"></div>  <!-- ここに魔法一覧が表示される -->
-
+    <h2>魔法検索</h2>
+    <input type="text" id="magic-name" placeholder="魔法名を入力">
+    <button onclick="searchMagic()">検索</button>
+    <p id="error-message"></p>
 </body>
-<script src="login.js" defer></script>
 </html>
+
