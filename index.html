@@ -4,13 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>魔法検索</title>
+    <link rel="stylesheet" href="https://satsuki-amagori.github.io/wikipedia/style.css">
     <script src="login.js" defer></script>
 </head>
 <body>
-    <h2>魔法検索</h2>
-    <input type="text" id="magic-name" placeholder="魔法名を入力">
-    <button onclick="searchMagic()">検索</button>
-    <p id="error-message"></p>
+    <div class="container">
+        <header>
+            <h1>魔法検索</h1>
+        </header>
+
+        <main>
+            <form onsubmit="searchMagic(); return false;">
+                <label for="magic-name">魔法名を入力:</label>
+                <input type="text" id="magic-name" placeholder="魔法名を入力">
+                <button type="submit">検索</button>
+            </form>
+            <p id="error-message"></p>
+        </main>
+
+        <footer>
+            <div class="footer">
+                <a href="../../index.html">トップページへ戻る</a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
-
