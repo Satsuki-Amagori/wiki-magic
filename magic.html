@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>魔法の詳細</title>
+    <script src="magic.js" defer></script>
+</head>
+<body>
+    <h2 id="magic-title"></h2>
+    <p id="magic-description"></p>
+    <p id="magic-cost"></p>
+
+    <h3>詳細情報（パスワード入力）</h3>
+    <input type="password" id="magic-password" placeholder="パスワードを入力">
+    <button onclick="checkPassword()">表示</button>
+    <p id="password-error"></p>
+    
+    <div id="magic-details"></div> <!-- ここに詳細を表示 -->
+</body>
+</html>
