@@ -1,64 +1,52 @@
-document.getElementById("loginButton").addEventListener("click", login);
+async function searchMagic() {
+    const magicName = document.getElementById("magic-name").value.trim();
+    const errorMessage = document.getElementById("error-message");
 
-async function login() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
+    if (!magicName) {
+        errorMessage.textContent = "魔法名を入力してください。";
+        return;
+    }
 
     try {
-        console.log("Fetching users.json...");
-        const response = await fetch("users.json");
+        // magic.json に魔法名があるか確認
+        const response = await fetch("magic.json");
         if (!response.ok) throw new Error(`HTTPエラー: ${response.status}`);
+        
+        const magicData = await response.json();
+        const magicExists = magicData.some(magic => magic.name === magicName);
 
-        const usersData = await response.json();
-        console.log("取得したユーザーデータ:", usersData);
-
-        // ユーザー認証
-        const user = usersData.users.find(user => user.username === username && user.password === password);
-        if (!user) {
-            alert("ユーザー名またはパスワードが間違っています");
-            return;
+        if (magicExists) {
+            window.location.href = `${magicName}.html`; // ページに移動
+        } else {
+            errorMessage.textContent = "その名前の魔法は存在しません。";
         }
-
-        console.log(`ログイン成功: ${username}`);
-        displayMagic(username);
-
     } catch (error) {
         console.error("エラー:", error);
-        alert("ログイン処理中にエラーが発生しました");
+        errorMessage.textContent = "データの取得に失敗しました。";
     }
 }
 
-async function displayMagic(username) {
+// 追加パスワード認証処理
+async function checkPassword() {
+    const password = document.getElementById("magic-password").value.trim();
+    const magicName = document.body.dataset.magic; // HTMLのdata-magic属性に魔法名を格納
+    const detailSection = document.getElementById("magic-details");
+    const errorMessage = document.getElementById("password-error");
+
     try {
-        console.log("Fetching magic.json...");
         const response = await fetch("magic.json");
         if (!response.ok) throw new Error(`HTTPエラー: ${response.status}`);
 
         const magicData = await response.json();
-        console.log("取得した魔法データ:", magicData);
+        const magicItem = magicData.find(magic => magic.name === magicName);
 
-        const magicList = document.getElementById("magic-list");
-        magicList.innerHTML = ""; // 既存のリストをクリア
-
-        let hasMagic = false;
-
-        magicData.magic.forEach(magic => {
-            if (magic.users.includes(username)) {
-                hasMagic = true;
-                const magicItem = document.createElement("div");
-                magicItem.innerHTML = `<strong>${magic.name}</strong>: ${magic.effect} (コスト: ${magic.cost})`;
-                magicList.appendChild(magicItem);
-            }
-        });
-
-        if (!hasMagic) {
-            magicList.innerHTML = "<p>閲覧可能な魔法はありません</p>";
+        if (magicItem && magicItem.password === password) {
+            detailSection.innerHTML = `<p>${magicItem.details}</p>`; // 詳細を表示
+        } else {
+            errorMessage.textContent = "パスワードが違います。";
         }
-
-        console.log("魔法を表示しました");
-
     } catch (error) {
         console.error("エラー:", error);
-        alert("魔法の取得中にエラーが発生しました");
+        errorMessage.textContent = "詳細情報の取得に失敗しました。";
     }
 }
