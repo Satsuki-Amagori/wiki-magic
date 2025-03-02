@@ -1,23 +1,7 @@
 {
-    "fireball": {
-        "name": "ファイアボール",
-        "description": "爆発的な炎で敵を焼く",
-        "cost": "MP 10",
-        "password": "fire123",
-        "details": "ファイアボールは半径3mの範囲に40ダメージを与える。"
-    },
-    "magic": {
-        "name": "まほう",
-        "description": "爆発的な炎で敵を焼く",
-        "cost": "MP 10",
-        "password": "mahou",
-        "details": "ファイアボールは半径3mの範囲に40ダメージを与える。"
-    },
-    "iceblast": {
-        "name": "アイスブラスト",
-        "description": "冷気の爆発で敵を凍らせる",
-        "cost": "MP 15",
-        "password": "ice456",
-        "details": "アイスブラストは敵の動きを2ターン遅くする。"
-    }
+    "magic": [
+        { "name": "ファイアボール", "description": "爆発的な炎で敵を焼く", "password": "fire123" },
+        { "name": "アイススピア", "description": "鋭い氷の槍で貫く", "password": "ice456" },
+        { "name": "magic", "description": "試行用", "password": "trymagic" },
+    ]
 }
