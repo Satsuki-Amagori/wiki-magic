@@ -3,37 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインページ</title>
+    <title>魔法検索</title>
     <link rel="stylesheet" href="https://satsuki-amagori.github.io/wikipedia/style.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="login.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>ログイン</h1>
-        </header>
-
-        <main>
-            <form onsubmit="login(); return false;">
-                <label for="username">ユーザー名:</label>
-                <input type="text" id="username" placeholder="ユーザー名" required>
-
-                <label for="password">パスワード:</label>
-                <input type="password" id="password" placeholder="パスワード" required>
-
-                <button type="submit">ログイン</button>
-            </form>
-
-            <h2>使用可能な魔法</h2>
-            <div id="magic-list"><!-- ここに魔法一覧が表示される --></div>
-        </main>
-
-        <footer>
-            <div class="footer">
-                <a href="../../index.html">トップページへ戻る</a>
-            </div>
-        </footer>
+        <h2>魔法検索</h2>
+        <div class="search-box">
+            <input type="text" id="magic-name" placeholder="魔法名を入力">
+            <button type="button" onclick="searchMagic()">検索</button>
+        </div>
+        <p id="error-message"></p>
     </div>
 </body>
 </html>
